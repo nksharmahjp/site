@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /*.gs
+
+# Sitemaps
+Sitemap: https://niteshautomations.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 10
+
+# Allow major search engines full access
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 10

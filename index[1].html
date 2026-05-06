@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nitesh Automations - Stock Market Research Reports, Excel & Tally Automation. Free Demat Account Opening. Hindi & English Stock Reports.">
+<meta name="keywords" content="stock market research, demat account, Angel One, stock reports Hindi, Excel automation, Tally automation, Nitesh Kumar">
+<meta property="og:title" content="Nitesh Automations - Stock Market Education Platform">
+<meta property="og:description" content="Stock Market Research Reports | Free Demat Account | Excel & Tally Automation">
+<meta property="og:type" content="website">
+<title>Nitesh Automations | Stock Market Research & Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS & CSS VARIABLES
+═══════════════════════════════════════════ */
+:root {
+  --brand-primary: #00D4AA;
+  --brand-accent: #FFD700;
+  --brand-red: #FF4757;
+  --brand-green: #2ED573;
+  
+  --bg-dark: #090C10;
+  --bg-card: #0D1117;
+  --bg-card2: #131A22;
+  --bg-glass: rgba(0,212,170,0.06);
+  
+  --text-primary: #E8EDF2;
+  --text-secondary: #8892A4;
+  --text-muted: #4A5568;
+  
+  --border: rgba(0,212,170,0.15);
+  --border-strong: rgba(0,212,170,0.3);
+  
+  --shadow-glow: 0 0 40px rgba(0,212,170,0.15);
+  --shadow-card: 0 8px 32px rgba(0,0,0,0.4);
+  
+  --font-display: 'Rajdhani', sans-serif;
+  --font-body: 'Sora', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  --bg-dark: #F0F4F8;
+  --bg-card: #FFFFFF;
+  --bg-card2: #F7FAFC;
+  --bg-glass: rgba(0,212,170,0.08);
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --text-muted: #A0AEC0;
+  --border: rgba(0,212,170,0.2);
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--brand-primary); border-radius: 3px; }
+
+/* ═══════════════════════════════════════════
+   BACKGROUND GRID PATTERN
+═══════════════════════════════════════════ */
+.bg-grid {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════════ */
+h1,h2,h3,h4,h5 { font-family: var(--font-display); letter-spacing: 0.5px; }
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  margin-bottom: 0.75rem;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+.section { padding: 5rem 0; position: relative; z-index: 1; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════ */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 999;
+  background: rgba(9,12,16,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 0;
+  transition: all var(--transition);
+}
+[data-theme="light"] .navbar { background: rgba(240,244,248,0.9); }
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--brand-primary);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--brand-primary), #00A884);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.nav-links { display: flex; gap: 0.25rem; align-items: center; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  transition: all var(--transition);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--brand-primary); background: var(--bg-glass); }
+.nav-actions { display: flex; gap: 0.75rem; align-items: center; }
+
+/* Theme toggle */
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--bg-glass);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; transition: all var(--transition);
+}
+.theme-toggle:hover { border-color: var(--brand-primary); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 4px; cursor: pointer; padding: 6px; }
+.hamburger span { width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s; }
+
+/* Mobile menu */
+.mobile-menu {
+  display: none; position: fixed; top: 65px; left: 0; width: 100%;
+  background: var(--bg-card); border-bottom: 1px solid var(--border);
+  padding: 1rem; z-index: 998;
+  flex-direction: column; gap: 0.25rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  color: var(--text-secondary); text-decoration: none;
+  padding: 0.75rem 1rem; border-radius: 8px;
+  font-weight: 500; transition: all var(--transition);
+}
+.mobile-menu a:hover { color: var(--brand-primary); background: var(--bg-glass); }
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; border-radius: var(--radius);
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  cursor: pointer; border: none; text-decoration: none;
+  transition: all var(--transition); letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary), #00A884);
+  color: #000;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,212,170,0.4); }
+.btn-accent {
+  background: linear-gradient(135deg, var(--brand-accent), #FFA500);
+  color: #000;
+}
+.btn-accent:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(255,215,0,0.4); }
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
+.btn-outline:hover { background: var(--bg-glass); transform: translateY(-2px); }
+.btn-ghost { background: var(--bg-glass); color: var(--text-primary); border: 1px solid var(--border); }
+.btn-ghost:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+.btn-danger { background: var(--brand-red); color: #fff; }
+.btn-sm { padding: 0.45rem 1rem; font-size: 0.85rem; }
+.btn-lg { padding: 0.9rem 2rem; font-size: 1.1rem; }
+.btn-full { width: 100%; justify-content: center; }
+
+/* ═══════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: all var(--transition);
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--brand-primary), transparent);
+  opacity: 0; transition: opacity var(--transition);
+}
+.card:hover { border-color: var(--border-strong); transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+.card:hover::before { opacity: 1; }
+
+/* ═══════════════════════════════════════════
+   PAGES ROUTING
+═══════════════════════════════════════════ */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════════════
+   HOME PAGE - HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 7rem 0 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; top: 20%; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(ellipse, rgba(0,212,170,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(0,212,170,0.1); border: 1px solid var(--brand-primary);
+  border-radius: 50px; padding: 0.35rem 1rem;
+  font-size: 0.78rem; font-family: var(--font-mono);
+  color: var(--brand-primary); margin-bottom: 1.5rem;
+}
+.live-dot {
+  width: 6px; height: 6px; background: var(--brand-green);
+  border-radius: 50%; animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1; margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+.hero p { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-stats {
+  display: flex; gap: 2rem; margin-top: 2.5rem;
+  padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+  color: var(--brand-primary);
+}
+.stat-label { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* Stock ticker */
+.hero-visual {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+.ticker-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.ticker-title { font-family: var(--font-display); font-weight: 600; }
+.ticker-tag {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  background: var(--bg-glass); border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--brand-primary);
+}
+.stock-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.stock-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card2); border-radius: var(--radius);
+  border: 1px solid var(--border);
+  cursor: pointer; transition: all var(--transition);
+}
+.stock-item:hover { border-color: var(--border-strong); }
+.stock-name { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+.stock-sector { font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-mono); }
+.stock-price { text-align: right; }
+.stock-val { font-family: var(--font-mono); font-weight: 500; font-size: 0.9rem; }
+.stock-chg { font-size: 0.72rem; font-family: var(--font-mono); }
+.up { color: var(--brand-green); }
+.down { color: var(--brand-red); }
+
+/* TICKER TAPE */
+.ticker-tape {
+  background: var(--bg-card); border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); padding: 0.6rem 0; overflow: hidden;
+}
+.ticker-inner { display: flex; gap: 3rem; animation: scroll 25s linear infinite; white-space: nowrap; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-chip {
+  font-family: var(--font-mono); font-size: 0.78rem;
+  display: inline-flex; gap: 0.5rem; align-items: center;
+}
+
+/* ═══════════════════════════════════════════
+   ADS PLACEHOLDER
+═══════════════════════════════════════════ */
+.ad-banner {
+  background: var(--bg-card2); border: 2px dashed var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+  text-align: center; color: var(--text-muted);
+  font-family: var(--font-mono); font-size: 0.75rem;
+  margin: 1rem 0;
+}
+.ad-leaderboard { height: 90px; display: flex; align-items: center; justify-content: center; }
+.ad-square { height: 250px; display: flex; align-items: center; justify-content: center; }
+
+/* ═══════════════════════════════════════════
+   ANGEL ONE CTA
+═══════════════════════════════════════════ */
+.angel-banner {
+  background: linear-gradient(135deg, #1a0a3e, #0a1a3e);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.angel-banner::before {
+  content: '₹'; position: absolute; right: 3rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 8rem; font-family: var(--font-display);
+  color: rgba(255,215,0,0.05); font-weight: 700;
+}
+.angel-text h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.angel-text p { color: var(--text-secondary); font-size: 0.9rem; }
+.angel-features { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem; }
+.angel-feature {
+  font-size: 0.75rem; font-family: var(--font-mono);
+  background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2);
+  color: var(--brand-accent); padding: 0.25rem 0.6rem; border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════
+   REPORTS PAGE
+═══════════════════════════════════════════ */
+.reports-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.5rem; }
+.report-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: all var(--transition);
+}
+.report-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: var(--border-strong); }
+.report-thumb {
+  height: 160px; background: linear-gradient(135deg, var(--bg-card2), #0d2137);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.report-icon { font-size: 3rem; z-index: 1; }
+.report-lang-badge {
+  position: absolute; top: 1rem; right: 1rem;
+  background: var(--brand-primary); color: #000;
+  font-size: 0.65rem; font-family: var(--font-mono); font-weight: 600;
+  padding: 0.2rem 0.5rem; border-radius: 4px;
+}
+.report-body { padding: 1.25rem; }
+.report-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+.report-desc { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.6; }
+.report-footer { display: flex; align-items: center; justify-content: space-between; }
+.report-price { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--brand-primary); }
+.report-price-original { font-size: 0.8rem; color: var(--text-muted); text-decoration: line-through; margin-left: 0.25rem; }
+.report-actions { display: flex; gap: 0.5rem; }
+
+/* Filter tabs */
+.filter-tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-tab {
+  padding: 0.45rem 1rem; border-radius: 50px;
+  background: var(--bg-glass); border: 1px solid var(--border);
+  color: var(--text-secondary); font-size: 0.82rem; cursor: pointer;
+  transition: all var(--transition); font-family: var(--font-mono);
+}
+.filter-tab.active, .filter-tab:hover {
+  background: var(--brand-primary); color: #000; border-color: var(--brand-primary);
+}
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(8px);
+  z-index: 9999; align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem;
+  max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto;
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.modal-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+.modal-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-muted); padding: 0.25rem; }
+
+/* ═══════════════════════════════════════════
+   FORMS
+═══════════════════════════════════════════ */
+.form-group { margin-bottom: 1.25rem; }
+.form-label { display: block; font-size: 0.82rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text-secondary); }
+.form-input, .form-select, .form-textarea {
+  width: 100%; padding: 0.7rem 1rem;
+  background: var(--bg-card2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text-primary);
+  font-family: var(--font-body); font-size: 0.9rem;
+  transition: border-color var(--transition);
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none; border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(0,212,170,0.1);
+}
+.form-textarea { resize: vertical; min-height: 100px; }
+.form-select { cursor: pointer; }
+
+/* Tabs */
+.tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+.tab-btn {
+  flex: 1; padding: 0.75rem; background: none; border: none; cursor: pointer;
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  color: var(--text-muted); border-bottom: 2px solid transparent;
+  transition: all var(--transition);
+}
+.tab-btn.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ═══════════════════════════════════════════
+   DASHBOARD
+═══════════════════════════════════════════ */
+.dashboard-layout { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; min-height: calc(100vh - 65px); padding-top: 80px; }
+.sidebar {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  position: sticky; top: 80px; height: fit-content;
+}
+.sidebar-nav { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; margin-top: 1.25rem; }
+.sidebar-nav li a {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.9rem; border-radius: var(--radius);
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 0.88rem; font-weight: 500;
+  transition: all var(--transition);
+}
+.sidebar-nav li a:hover, .sidebar-nav li a.active {
+  background: var(--bg-glass); color: var(--brand-primary);
+}
+.dash-icon { font-size: 1rem; width: 20px; text-align: center; }
+.dash-content { padding: 1rem 0; }
+.dash-section { display: none; }
+.dash-section.active { display: block; }
+
+/* Metric cards */
+.metrics-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-bottom: 1.5rem; }
+.metric-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.25rem;
+}
+.metric-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.metric-value { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--brand-primary); }
+.metric-label { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* Data table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.data-table th {
+  background: var(--bg-card2); padding: 0.75rem 1rem;
+  text-align: left; font-family: var(--font-mono); font-size: 0.72rem;
+  letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 0.9rem 1rem; border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.data-table tr:hover td { background: var(--bg-glass); }
+.table-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.table-title { font-family: var(--font-display); font-weight: 600; }
+
+/* Status badges */
+.badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.2rem 0.6rem; border-radius: 50px;
+  font-size: 0.7rem; font-family: var(--font-mono); font-weight: 600;
+}
+.badge-success { background: rgba(46,213,115,0.15); color: var(--brand-green); }
+.badge-warning { background: rgba(255,215,0,0.15); color: var(--brand-accent); }
+.badge-danger { background: rgba(255,71,87,0.15); color: var(--brand-red); }
+.badge-info { background: rgba(0,212,170,0.15); color: var(--brand-primary); }
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.testimonial-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.5rem;
+}
+.testimonial-stars { color: var(--brand-accent); font-size: 0.9rem; margin-bottom: 0.75rem; }
+.testimonial-text { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+.testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+.author-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary), #00A884);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: #000;
+}
+.author-name { font-weight: 600; font-size: 0.88rem; }
+.author-tag { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+.service-icon-wrap {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: var(--bg-glass); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.25rem;
+  transition: all var(--transition);
+}
+.card:hover .service-icon-wrap { background: var(--brand-primary); border-color: var(--brand-primary); }
+
+/* ═══════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════ */
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: center; }
+.about-img-wrap {
+  position: relative;
+}
+.about-img-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2rem; text-align: center;
+}
+.about-avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-primary), #00A884);
+  margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 2.5rem; font-weight: 700; color: #000;
+}
+.skills-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.skill-tag {
+  background: var(--bg-glass); border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem; border-radius: 6px;
+  font-size: 0.72rem; font-family: var(--font-mono); color: var(--brand-primary);
+}
+.experience-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.exp-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.exp-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+.exp-title { font-weight: 600; margin-bottom: 0.25rem; }
+.exp-desc { font-size: 0.82rem; color: var(--text-secondary); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.footer {
+  background: var(--bg-card); border-top: 1px solid var(--border);
+  padding: 3.5rem 0 1.5rem; position: relative; z-index: 1;
+}
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+.footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin-top: 0.75rem; max-width: 260px; }
+.footer-heading { font-family: var(--font-display); font-weight: 600; margin-bottom: 1rem; color: var(--brand-primary); font-size: 0.95rem; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color var(--transition); }
+.footer-links a:hover { color: var(--brand-primary); }
+.social-links { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+.social-btn {
+  width: 38px; height: 38px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-glass);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; font-size: 0.9rem;
+  transition: all var(--transition);
+}
+.social-btn:hover { border-color: var(--brand-primary); background: var(--bg-glass); transform: translateY(-3px); }
+.footer-bottom {
+  border-top: 1px solid var(--border); padding-top: 1.25rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.78rem; color: var(--text-muted); }
+.disclaimer {
+  background: rgba(255,71,87,0.08); border: 1px solid rgba(255,71,87,0.2);
+  border-radius: var(--radius); padding: 0.75rem 1rem;
+  font-size: 0.75rem; color: #ff8a95; font-family: var(--font-mono);
+  margin-top: 1.5rem; line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+.contact-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.contact-icon { font-size: 1.25rem; }
+.contact-label { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); }
+.contact-value { font-weight: 500; font-size: 0.9rem; color: var(--brand-primary); }
+
+/* ═══════════════════════════════════════════
+   PAYMENT MODAL
+═══════════════════════════════════════════ */
+.payment-options { display: flex; flex-direction: column; gap: 0.75rem; margin: 1rem 0; }
+.payment-option {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem; background: var(--bg-card2); border: 1px solid var(--border);
+  border-radius: var(--radius); cursor: pointer; transition: all var(--transition);
+}
+.payment-option:hover, .payment-option.selected {
+  border-color: var(--brand-primary); background: var(--bg-glass);
+}
+.payment-option-icon { font-size: 1.5rem; }
+.payment-option-name { font-weight: 600; }
+.payment-option-desc { font-size: 0.75rem; color: var(--text-muted); }
+.upi-input-section { margin: 1rem 0; }
+
+/* ═══════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════ */
+.section-header { text-align: center; margin-bottom: 3rem; }
+.section-header h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin-bottom: 0.75rem; }
+.section-header p { color: var(--text-secondary); max-width: 560px; margin: 0 auto; font-size: 0.95rem; line-height: 1.7; }
+
+/* ═══════════════════════════════════════════
+   NOTIFICATIONS / TOAST
+═══════════════════════════════════════════ */
+.toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99999; display: flex; flex-direction: column; gap: 0.5rem; }
+.toast {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0.9rem 1.25rem;
+  min-width: 280px; box-shadow: var(--shadow-card);
+  animation: toastIn 0.3s ease;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+@keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+.toast.success { border-left: 3px solid var(--brand-green); }
+.toast.error { border-left: 3px solid var(--brand-red); }
+.toast.info { border-left: 3px solid var(--brand-primary); }
+.toast-msg { font-size: 0.85rem; }
+
+/* ═══════════════════════════════════════════
+   MISC
+═══════════════════════════════════════════ */
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mt-2 { margin-top: 1rem; }
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+
+/* ═══════════════════════════════════════════
+   ADMIN PANEL
+═══════════════════════════════════════════ */
+.admin-login {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+}
+.admin-login-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+  width: 100%; max-width: 400px;
+}
+
+/* Referral section */
+.referral-box {
+  background: var(--bg-glass); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg); padding: 1.5rem; text-align: center;
+}
+.referral-link-display {
+  font-family: var(--font-mono); font-size: 0.8rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  padding: 0.6rem 1rem; border-radius: var(--radius);
+  margin: 0.75rem 0; word-break: break-all;
+  color: var(--brand-primary);
+}
+
+/* Chart placeholder */
+.chart-placeholder {
+  background: var(--bg-card2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1rem;
+  height: 180px; display: flex; align-items: flex-end;
+  gap: 6px; padding-bottom: 1rem;
+}
+.bar {
+  flex: 1; border-radius: 4px 4px 0 0;
+  background: linear-gradient(0deg, var(--brand-primary), rgba(0,212,170,0.3));
+  transition: all var(--transition);
+}
+.bar:hover { background: var(--brand-primary); }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .dashboard-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .metrics-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-btns { flex-direction: column; }
+  .hero-stats { gap: 1rem; flex-wrap: wrap; }
+  .angel-banner { flex-direction: column; text-align: center; }
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+.fade-in { animation: fadeIn 0.6s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.stagger > * { animation: fadeIn 0.5s ease both; }
+.stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Search bar */
+.search-bar {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 50px; padding: 0.5rem 1rem;
+  max-width: 400px; margin: 0 auto 2rem;
+}
+.search-bar input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem;
+}
+.search-bar:focus-within { border-color: var(--brand-primary); }
+
+/* Progress bar */
+.progress-bar { height: 6px; background: var(--bg-card2); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent)); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- Background grid -->
+<div class="bg-grid"></div>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="#" class="logo" onclick="navigate('home')">
+      <div class="logo-icon">📈</div>
+      Nitesh Automations
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="navigate('home')" class="active" id="nav-home">Home</a></li>
+      <li><a href="#" onclick="navigate('about')" id="nav-about">About</a></li>
+      <li><a href="#" onclick="navigate('services')" id="nav-services">Services</a></li>
+      <li><a href="#" onclick="navigate('reports')" id="nav-reports">Reports</a></li>
+      <li><a href="#" onclick="navigate('contact')" id="nav-contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+      <a href="#" class="btn btn-outline btn-sm" onclick="navigate('login')">Login</a>
+      <a href="#" class="btn btn-primary btn-sm" onclick="navigate('register')">Register</a>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="navigate('home');toggleMenu()">🏠 Home</a>
+  <a href="#" onclick="navigate('about');toggleMenu()">👤 About</a>
+  <a href="#" onclick="navigate('services');toggleMenu()">⚙️ Services</a>
+  <a href="#" onclick="navigate('reports');toggleMenu()">📊 Reports</a>
+  <a href="#" onclick="navigate('contact');toggleMenu()">📞 Contact</a>
+  <a href="#" onclick="navigate('login');toggleMenu()">🔐 Login</a>
+  <a href="#" onclick="navigate('register');toggleMenu()">✨ Register</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Ticker Tape -->
+  <div class="ticker-tape" style="margin-top:65px">
+    <div class="ticker-inner">
+      <span class="ticker-chip up">RELIANCE ▲ 2,847.50 +1.2%</span>
+      <span class="ticker-chip up">TCS ▲ 4,102.00 +0.8%</span>
+      <span class="ticker-chip down">INFOSYS ▼ 1,687.30 -0.4%</span>
+      <span class="ticker-chip up">HDFC BANK ▲ 1,742.00 +1.5%</span>
+      <span class="ticker-chip down">WIPRO ▼ 463.20 -0.2%</span>
+      <span class="ticker-chip up">ICICI BANK ▲ 1,218.00 +2.1%</span>
+      <span class="ticker-chip up">BAJAJ FIN ▲ 7,842.00 +0.9%</span>
+      <span class="ticker-chip down">MARUTI ▼ 12,340.00 -1.1%</span>
+      <span class="ticker-chip up">NIFTY 50 ▲ 23,847 +0.65%</span>
+      <span class="ticker-chip up">SENSEX ▲ 78,342 +0.72%</span>
+      <!-- Duplicate for seamless scroll -->
+      <span class="ticker-chip up">RELIANCE ▲ 2,847.50 +1.2%</span>
+      <span class="ticker-chip up">TCS ▲ 4,102.00 +0.8%</span>
+      <span class="ticker-chip down">INFOSYS ▼ 1,687.30 -0.4%</span>
+      <span class="ticker-chip up">HDFC BANK ▲ 1,742.00 +1.5%</span>
+      <span class="ticker-chip up">NIFTY 50 ▲ 23,847 +0.65%</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-left fade-in">
+          <div class="hero-badge">
+            <div class="live-dot"></div>
+            LIVE MARKET ANALYSIS
+          </div>
+          <h1>
+            Stock Market <span class="gradient-text">Research</span> &amp;
+            Education Platform
+          </h1>
+          <p>Hindi और English में expert stock research reports, free demat account opening with Angel One, और Excel/Tally automation services। अब stock market सीखें और कमाएं।</p>
+          <div class="hero-btns">
+            <a href="#" class="btn btn-primary btn-lg" onclick="navigate('reports')">📊 Research Reports देखें</a>
+            <a href="#" class="btn btn-accent btn-lg" onclick="openDematModal()">🔗 Free Demat खोलें</a>
+          </div>
+          <div class="hero-stats stagger">
+            <div class="stat-item">
+              <div class="stat-num" data-target="500">0</div>
+              <div class="stat-label">CLIENTS</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" data-target="50">0</div>
+              <div class="stat-label">REPORTS</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" data-target="98">0</div>
+              <div class="stat-label">% SATISFACTION</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num" data-target="5">0</div>
+              <div class="stat-label">YRS EXPERIENCE</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stock Ticker Widget -->
+        <div class="hero-visual fade-in" style="animation-delay:0.3s">
+          <div class="ticker-header">
+            <span class="ticker-title">📊 Top Stocks</span>
+            <span class="ticker-tag">LIVE</span>
+          </div>
+          <div class="stock-list" id="stockList">
+            <div class="stock-item">
+              <div><div class="stock-name">RELIANCE</div><div class="stock-sector">Energy</div></div>
+              <div class="stock-price"><div class="stock-val">₹2,847.50</div><div class="stock-chg up">▲ +1.23%</div></div>
+            </div>
+            <div class="stock-item">
+              <div><div class="stock-name">TCS</div><div class="stock-sector">IT</div></div>
+              <div class="stock-price"><div class="stock-val">₹4,102.00</div><div class="stock-chg up">▲ +0.87%</div></div>
+            </div>
+            <div class="stock-item">
+              <div><div class="stock-name">HDFC BANK</div><div class="stock-sector">Banking</div></div>
+              <div class="stock-price"><div class="stock-val">₹1,742.00</div><div class="stock-chg up">▲ +1.54%</div></div>
+            </div>
+            <div class="stock-item">
+              <div><div class="stock-name">INFOSYS</div><div class="stock-sector">IT</div></div>
+              <div class="stock-price"><div class="stock-val">₹1,687.30</div><div class="stock-chg down">▼ -0.41%</div></div>
+            </div>
+            <div class="stock-item">
+              <div><div class="stock-name">ICICI BANK</div><div class="stock-sector">Banking</div></div>
+              <div class="stock-price"><div class="stock-val">₹1,218.00</div><div class="stock-chg up">▲ +2.13%</div></div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;padding:0.75rem;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius);text-align:center;">
+            <div class="disclaimer" style="margin-top:0">⚠️ Educational purpose only. Not SEBI-registered advice.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADS LEADERBOARD -->
+  <div class="container">
+    <div class="ad-banner ad-leaderboard">
+      <!-- Google AdSense Code Here -->
+      📢 Advertisement Space (728×90 Leaderboard) — Google AdSense
+    </div>
+  </div>
+
+  <!-- ANGEL ONE SECTION -->
+  <section class="section" style="padding-top:2rem;padding-bottom:2rem">
+    <div class="container">
+      <div class="angel-banner">
+        <div class="angel-text">
+          <h3>🚀 Angel One में <span class="gradient-text">Free Demat Account</span> खोलें</h3>
+          <p>भारत के top broker के साथ trading शुरू करें। Zero brokerage on delivery trades!</p>
+          <div class="angel-features">
+            <span class="angel-feature">✅ Zero Commission</span>
+            <span class="angel-feature">⚡ Instant KYC</span>
+            <span class="angel-feature">📱 Mobile App</span>
+            <span class="angel-feature">🎁 Free Research</span>
+          </div>
+        </div>
+        <div>
+          <a href="https://angel-one.onelink.me/Wjgr/referral" target="_blank" class="btn btn-accent btn-lg">
+            🔗 अभी खोलें — Free
+          </a>
+          <div style="font-size:0.72rem;color:var(--text-muted);text-align:center;margin-top:0.5rem;font-family:var(--font-mono)">
+            REFERRAL LINK — Earn rewards
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// WHAT WE OFFER</div>
+        <h2>हमारी <span class="gradient-text">Services</span></h2>
+        <p>Stock market research से लेकर automation तक — सब कुछ एक ही जगह</p>
+      </div>
+      <div class="grid-3 stagger">
+        <div class="card">
+          <div class="service-icon-wrap">📊</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Research Reports</h3>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.7">Professional stock analysis reports in Hindi & English. Fundamental + Technical analysis included.</p>
+          <a href="#" class="btn btn-outline btn-sm" style="margin-top:1rem" onclick="navigate('reports')">View Reports →</a>
+        </div>
+        <div class="card">
+          <div class="service-icon-wrap">📗</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Excel Automation</h3>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.7">Custom Excel macros, dashboards, और automated reports। Business data processing।</p>
+          <a href="#" class="btn btn-outline btn-sm" style="margin-top:1rem" onclick="navigate('services')">Learn More →</a>
+        </div>
+        <div class="card">
+          <div class="service-icon-wrap">📒</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">Tally Automation</h3>
+          <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.7">Tally ERP customization, automation scripts, और accounting integration solutions।</p>
+          <a href="#" class="btn btn-outline btn-sm" style="margin-top:1rem" onclick="navigate('services')">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" style="background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// CLIENT REVIEWS</div>
+        <h2>Clients क्या कहते हैं <span class="gradient-text">हमारे बारे में</span></h2>
+      </div>
+      <div class="testimonials-grid stagger">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Nitesh ji के research reports ने मेरी trading completely बदल दी। Hindi में explanation बहुत clear था। Highly recommended!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RK</div>
+            <div><div class="author-name">Rajesh Kumar</div><div class="author-tag">Stock Trader, Delhi</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Excel automation service ने हमारा 6 घंटे का काम 30 मिनट में होने लगा। पैसे वसूल service है।"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">PS</div>
+            <div><div class="author-name">Priya Sharma</div><div class="author-tag">Business Owner, Mumbai</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★☆</div>
+          <p class="testimonial-text">"Angel One referral link से account खोला, Nitesh ji ने पूरी help की। Telegram bot भी बहुत useful है।"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AM</div>
+            <div><div class="author-name">Ankit Mishra</div><div class="author-tag">Investor, Lucknow</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADS SQUARE -->
+  <section class="section" style="padding:2rem 0">
+    <div class="container" style="display:flex;justify-content:center">
+      <div class="ad-banner ad-square" style="width:300px">
+        <!-- Google AdSense Code Here -->
+        📢 Ad Space (300×250 Rectangle) — Google AdSense
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEGRAM CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="card" style="text-align:center;background:linear-gradient(135deg,#0d2137,#091620)">
+        <div style="font-size:3rem;margin-bottom:1rem">🤖</div>
+        <h2 style="font-size:1.8rem;margin-bottom:0.75rem">Telegram Bot से जुड़ें</h2>
+        <p style="color:var(--text-secondary);max-width:500px;margin:0 auto 1.5rem">Reports खरीदें, referral track करें, और latest stock updates पाएं — सब कुछ Telegram पर।</p>
+        <a href="https://t.me/NiteshAutomationsBot" target="_blank" class="btn btn-primary btn-lg">
+          📱 Join Telegram Bot
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+<!-- END HOME -->
+
+<!-- ═══════════════════════════════════════════
+     ABOUT PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div style="height:80px"></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-label">// WHO WE ARE</div>
+      <div class="about-grid">
+        <div>
+          <div class="about-img-card">
+            <div class="about-avatar">NK</div>
+            <h3 style="font-family:var(--font-display);font-size:1.5rem">Nitesh Kumar</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin:0.25rem 0">Stock Market Expert & Automation Specialist</p>
+            <div class="skills-row" style="justify-content:center">
+              <span class="skill-tag">Stock Analysis</span>
+              <span class="skill-tag">Fundamental</span>
+              <span class="skill-tag">Technical</span>
+              <span class="skill-tag">Excel VBA</span>
+              <span class="skill-tag">Tally ERP</span>
+              <span class="skill-tag">Accounting</span>
+              <span class="skill-tag">Teaching</span>
+            </div>
+            <div class="social-links" style="justify-content:center;margin-top:1.25rem">
+              <a class="social-btn" href="https://youtube.com/@NiteshAutomations" target="_blank">▶</a>
+              <a class="social-btn" href="https://instagram.com/NiteshAutomations" target="_blank">📸</a>
+              <a class="social-btn" href="https://t.me/NiteshAutomations" target="_blank">✈</a>
+              <a class="social-btn" href="https://linkedin.com/in/NiteshAutomations" target="_blank">💼</a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 style="font-size:2rem;margin-bottom:1rem">Nitesh Kumar के <span class="gradient-text">बारे में</span></h2>
+          <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem">
+            मैं Nitesh Kumar हूं — एक passionate stock market educator और automation expert। मेरा goal है कि हर common Indian investor को professional-quality research और tools मिले जो अब तक केवल बड़े institutions को available थे।
+          </p>
+          <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem">
+            5+ साल के stock market experience के साथ, मैं fundamental और technical दोनों तरह का analysis करता हूं। मेरे research reports Hindi में available हैं ताकि हर investor इन्हें समझ सके।
+          </p>
+          <div class="experience-list stagger">
+            <div class="exp-item">
+              <div class="exp-icon">📈</div>
+              <div>
+                <div class="exp-title">Stock Market Expert</div>
+                <div class="exp-desc">5+ साल का experience। NSE/BSE listed companies का in-depth research। Fundamental + Technical analysis।</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">📚</div>
+              <div>
+                <div class="exp-title">Stock Market Educator</div>
+                <div class="exp-desc">500+ students को stock market basics से advanced trading तक सिखाया। Hindi medium में teaching।</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">📊</div>
+              <div>
+                <div class="exp-title">Accounting & Automation</div>
+                <div class="exp-desc">Chartered Accountant का background। Excel VBA और Tally ERP automation में expertise।</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">🤖</div>
+              <div>
+                <div class="exp-title">Digital Products Creator</div>
+                <div class="exp-desc">50+ research reports, templates, और educational content। Google Apps Script automation।</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-services">
+  <div style="height:80px"></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// OUR SERVICES</div>
+        <h2>हमारी <span class="gradient-text">Services</span></h2>
+        <p>Professional quality services at affordable prices</p>
+      </div>
+      
+      <!-- Research Reports -->
+      <div class="card" style="margin-bottom:1.5rem">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center">
+          <div style="font-size:4rem">📊</div>
+          <div>
+            <h3 style="font-size:1.5rem;margin-bottom:0.5rem">Stock Research Reports</h3>
+            <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1rem">NSE/BSE की top companies का detailed analysis। Reports में include है: Business Overview, Financial Analysis, Valuation, Target Price, Risk Factors।</p>
+            <div class="skills-row">
+              <span class="skill-tag">Fundamental Analysis</span>
+              <span class="skill-tag">Technical Charts</span>
+              <span class="skill-tag">Hindi Medium</span>
+              <span class="skill-tag">English Medium</span>
+              <span class="skill-tag">PDF Format</span>
+              <span class="skill-tag">Instant Download</span>
+            </div>
+            <div style="margin-top:1rem">
+              <a href="#" class="btn btn-primary" onclick="navigate('reports')">📥 Reports देखें — ₹49 से शुरू</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Excel Automation -->
+      <div class="card" style="margin-bottom:1.5rem">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center">
+          <div style="font-size:4rem">📗</div>
+          <div>
+            <h3 style="font-size:1.5rem;margin-bottom:0.5rem">Excel Automation Services</h3>
+            <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1rem">Custom Excel solutions जो आपके business को automate करें। VBA macros, automated dashboards, data processing scripts।</p>
+            <div class="skills-row">
+              <span class="skill-tag">VBA Macros</span>
+              <span class="skill-tag">Pivot Tables</span>
+              <span class="skill-tag">Custom Dashboards</span>
+              <span class="skill-tag">Data Automation</span>
+              <span class="skill-tag">MIS Reports</span>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+              <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--brand-primary)">₹999+</span>
+              <a href="#" class="btn btn-outline" onclick="navigate('contact')">📞 Contact करें</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tally Automation -->
+      <div class="card" style="margin-bottom:1.5rem">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center">
+          <div style="font-size:4rem">📒</div>
+          <div>
+            <h3 style="font-size:1.5rem;margin-bottom:0.5rem">Tally ERP Automation</h3>
+            <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1rem">Tally ERP 9 और Tally Prime customization। Custom reports, TDL scripting, bulk data import/export।</p>
+            <div class="skills-row">
+              <span class="skill-tag">TDL Scripting</span>
+              <span class="skill-tag">Custom Reports</span>
+              <span class="skill-tag">Data Import</span>
+              <span class="skill-tag">GST Filing</span>
+              <span class="skill-tag">Payroll</span>
+            </div>
+            <div style="margin-top:1rem;display:flex;gap:0.75rem;flex-wrap:wrap">
+              <span style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--brand-primary)">₹1,499+</span>
+              <a href="#" class="btn btn-outline" onclick="navigate('contact')">📞 Contact करें</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Angel One -->
+      <div class="angel-banner">
+        <div class="angel-text">
+          <h3>🏦 Angel One Referral — <span class="gradient-text">Extra Earn करें</span></h3>
+          <p>Angel One में account खोलें और हमारे referral system से extra income करें।</p>
+        </div>
+        <a href="https://angel-one.onelink.me/Wjgr/referral" target="_blank" class="btn btn-accent btn-lg">Account खोलें</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     REPORTS PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-reports">
+  <div style="height:80px"></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// RESEARCH LIBRARY</div>
+        <h2>Stock <span class="gradient-text">Research Reports</span></h2>
+        <p>Professional analysis by experts. Hindi & English में available।</p>
+      </div>
+
+      <div class="search-bar">
+        <span>🔍</span>
+        <input type="text" placeholder="Report search करें..." onkeyup="filterReports(this.value)" id="reportSearch">
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="setFilter(this,'all')">All Reports</button>
+        <button class="filter-tab" onclick="setFilter(this,'hindi')">हिंदी</button>
+        <button class="filter-tab" onclick="setFilter(this,'english')">English</button>
+        <button class="filter-tab" onclick="setFilter(this,'banking')">Banking</button>
+        <button class="filter-tab" onclick="setFilter(this,'it')">IT Sector</button>
+        <button class="filter-tab" onclick="setFilter(this,'energy')">Energy</button>
+        <button class="filter-tab" onclick="setFilter(this,'pharma')">Pharma</button>
+      </div>
+
+      <div class="reports-grid" id="reportsGrid">
+        <!-- Reports rendered by JS -->
+      </div>
+
+      <div class="ad-banner ad-leaderboard" style="margin-top:2rem">
+        <!-- Google AdSense Code Here -->
+        📢 Ad Space — Google AdSense (728×90)
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     LOGIN PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-login">
+  <div class="admin-login">
+    <div class="admin-login-card">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">📈</div>
+        <h2 style="font-size:1.5rem">Welcome Back</h2>
+        <p style="color:var(--text-secondary);font-size:0.85rem">अपने account में login करें</p>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(this,'loginTab')">Login</button>
+        <button class="tab-btn" onclick="switchTab(this,'registerTab')">Register</button>
+      </div>
+      <div class="tab-content active" id="loginTab">
+        <div class="form-group">
+          <label class="form-label">Mobile Number / Email</label>
+          <input type="text" class="form-input" placeholder="+91 XXXXX XXXXX" id="loginEmail">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="••••••••" id="loginPass">
+        </div>
+        <button class="btn btn-primary btn-full" onclick="handleLogin()">🔐 Login करें</button>
+        <div style="text-align:center;margin-top:1rem;font-size:0.82rem;color:var(--text-muted)">
+          <a href="#" style="color:var(--brand-primary)">Password भूल गए?</a>
+        </div>
+      </div>
+      <div class="tab-content" id="registerTab">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" placeholder="आपका नाम" id="regName">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile Number</label>
+          <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" id="regMobile">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email (Optional)</label>
+          <input type="email" class="form-input" placeholder="email@example.com" id="regEmail">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Referral Code (Optional)</label>
+          <input type="text" class="form-input" placeholder="REF-XXXXXX" id="regRef">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="Min. 8 characters" id="regPass">
+        </div>
+        <button class="btn btn-primary btn-full" onclick="handleRegister()">✨ Register करें</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     REGISTER PAGE (alias of login)
+═══════════════════════════════════════════ -->
+<div class="page" id="page-register">
+  <div class="admin-login">
+    <div class="admin-login-card">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">✨</div>
+        <h2 style="font-size:1.5rem">Create Account</h2>
+        <p style="color:var(--text-secondary);font-size:0.85rem">Free में register करें</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Full Name *</label>
+        <input type="text" class="form-input" placeholder="आपका पूरा नाम" id="r2Name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mobile Number *</label>
+        <input type="tel" class="form-input" placeholder="+91 XXXXX XXXXX" id="r2Mobile">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email *</label>
+        <input type="email" class="form-input" placeholder="email@example.com" id="r2Email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Referral Code (Optional)</label>
+        <input type="text" class="form-input" placeholder="REF-XXXXXX" id="r2Ref">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password *</label>
+        <input type="password" class="form-input" placeholder="Strong password बनाएं" id="r2Pass">
+      </div>
+      <button class="btn btn-primary btn-full" onclick="handleRegisterFull()">🚀 Account बनाएं</button>
+      <p style="text-align:center;margin-top:1rem;font-size:0.82rem;color:var(--text-muted)">
+        Already account है? <a href="#" style="color:var(--brand-primary)" onclick="navigate('login')">Login करें</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DASHBOARD PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-dashboard">
+  <div class="dashboard-layout" style="padding:80px 1.5rem 2rem;max-width:1180px;margin:0 auto">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div style="display:flex;align-items:center;gap:0.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
+        <div class="author-avatar" id="dashAvatar">NK</div>
+        <div>
+          <div style="font-weight:600;font-size:0.9rem" id="dashName">Nitesh Kumar</div>
+          <div style="font-size:0.72rem;color:var(--text-muted);font-family:var(--font-mono)" id="dashId">ID: NA-001</div>
+        </div>
+      </div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" onclick="showDashSection(this,'overview')"><span class="dash-icon">📊</span> Overview</a></li>
+        <li><a href="#" onclick="showDashSection(this,'purchases')"><span class="dash-icon">📥</span> My Reports</a></li>
+        <li><a href="#" onclick="showDashSection(this,'referral')"><span class="dash-icon">🔗</span> Referrals</a></li>
+        <li><a href="#" onclick="showDashSection(this,'earnings')"><span class="dash-icon">💰</span> Earnings</a></li>
+        <li><a href="#" onclick="showDashSection(this,'profile')"><span class="dash-icon">👤</span> Profile</a></li>
+        <li><a href="#" onclick="navigate('reports')"><span class="dash-icon">🛒</span> Buy Reports</a></li>
+        <li><a href="#" onclick="handleLogout()"><span class="dash-icon">🚪</span> Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dash-content">
+      <!-- Overview -->
+      <div class="dash-section active" id="dash-overview">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">Dashboard Overview</h2>
+        <div class="metrics-row stagger">
+          <div class="metric-card">
+            <div class="metric-icon">📊</div>
+            <div class="metric-value" id="m-reports">3</div>
+            <div class="metric-label">REPORTS BOUGHT</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">👥</div>
+            <div class="metric-value" id="m-refs">7</div>
+            <div class="metric-label">REFERRALS</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">💰</div>
+            <div class="metric-value" id="m-earn">₹350</div>
+            <div class="metric-label">EARNINGS</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-icon">📅</div>
+            <div class="metric-value" id="m-days">45</div>
+            <div class="metric-label">DAYS MEMBER</div>
+          </div>
+        </div>
+        
+        <!-- Mini chart -->
+        <div class="table-wrap" style="margin-bottom:1.5rem">
+          <div class="table-header">
+            <span class="table-title">📈 Earning History</span>
+            <span class="badge badge-success">Active</span>
+          </div>
+          <div style="padding:1.25rem">
+            <div class="chart-placeholder" id="miniChart">
+              <div class="bar" style="height:40%"></div>
+              <div class="bar" style="height:70%"></div>
+              <div class="bar" style="height:55%"></div>
+              <div class="bar" style="height:90%"></div>
+              <div class="bar" style="height:65%"></div>
+              <div class="bar" style="height:80%"></div>
+              <div class="bar" style="height:75%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent purchases -->
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">🛒 Recent Purchases</span></div>
+          <table class="data-table">
+            <thead><tr><th>Report</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="dashPurchases">
+              <tr><td>RELIANCE Analysis (Hindi)</td><td>2024-01-15</td><td>₹99</td><td><span class="badge badge-success">✓ Paid</span></td><td><button class="btn btn-sm btn-outline" onclick="showToast('📥 Download शुरू हो रहा है...','info')">Download</button></td></tr>
+              <tr><td>TCS Report (English)</td><td>2024-01-10</td><td>₹149</td><td><span class="badge badge-success">✓ Paid</span></td><td><button class="btn btn-sm btn-outline" onclick="showToast('📥 Download शुरू हो रहा है...','info')">Download</button></td></tr>
+              <tr><td>HDFC Bank Analysis</td><td>2024-01-05</td><td>₹99</td><td><span class="badge badge-success">✓ Paid</span></td><td><button class="btn btn-sm btn-outline" onclick="showToast('📥 Download शुरू हो रहा है...','info')">Download</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Purchases -->
+      <div class="dash-section" id="dash-purchases">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">📥 My Reports</h2>
+        <div class="reports-grid" id="purchasedReports">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Referral -->
+      <div class="dash-section" id="dash-referral">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">🔗 Referral Program</h2>
+        <div class="referral-box" style="margin-bottom:1.5rem">
+          <div style="font-size:2rem;margin-bottom:0.75rem">🎁</div>
+          <h3>Your Referral Link</h3>
+          <p style="color:var(--text-secondary);font-size:0.85rem;margin:0.5rem 0">हर referral पर ₹50 commission earn करें!</p>
+          <div class="referral-link-display" id="refLink">https://niteshautomations.com/?ref=NA001</div>
+          <button class="btn btn-primary" onclick="copyRef()">📋 Link Copy करें</button>
+        </div>
+        <div class="table-wrap">
+          <div class="table-header"><span class="table-title">👥 My Referrals</span></div>
+          <table class="data-table">
+            <thead><tr><th>User</th><th>Date</th><th>Status</th><th>Commission</th></tr></thead>
+            <tbody>
+              <tr><td>Rahul S. (...5678)</td><td>2024-01-12</td><td><span class="badge badge-success">Active</span></td><td class="up">₹50</td></tr>
+              <tr><td>Priya M. (...2341)</td><td>2024-01-08</td><td><span class="badge badge-success">Active</span></td><td class="up">₹50</td></tr>
+              <tr><td>Amit K. (...9012)</td><td>2024-01-03</td><td><span class="badge badge-warning">Pending</span></td><td>₹0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Earnings -->
+      <div class="dash-section" id="dash-earnings">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">💰 My Earnings</h2>
+        <div class="metrics-row" style="grid-template-columns:repeat(3,1fr)">
+          <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-value">₹350</div><div class="metric-label">TOTAL EARNED</div></div>
+          <div class="metric-card"><div class="metric-icon">⏳</div><div class="metric-value">₹50</div><div class="metric-label">PENDING</div></div>
+          <div class="metric-card"><div class="metric-icon">✅</div><div class="metric-value">₹300</div><div class="metric-label">WITHDRAWN</div></div>
+        </div>
+        <div class="card" style="margin-top:1.5rem;text-align:center">
+          <h3 style="margin-bottom:0.75rem">Withdrawal Request</h3>
+          <p style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:1rem">Minimum withdrawal: ₹200 | UPI/Bank Transfer</p>
+          <div style="max-width:300px;margin:0 auto">
+            <input type="text" class="form-input mb-2" placeholder="UPI ID या Account Number">
+            <button class="btn btn-primary btn-full" onclick="showToast('Withdrawal request submit हुई!','success')">💸 Withdraw करें</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="dash-section" id="dash-profile">
+        <h2 style="font-family:var(--font-display);font-size:1.5rem;margin-bottom:1.5rem">👤 My Profile</h2>
+        <div class="card" style="max-width:500px">
+          <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="profileName" value="Demo User"></div>
+          <div class="form-group"><label class="form-label">Mobile</label><input type="tel" class="form-input" value="+91 98765 43210"></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" value="user@example.com"></div>
+          <div class="form-group"><label class="form-label">Telegram Username</label><input type="text" class="form-input" placeholder="@username"></div>
+          <button class="btn btn-primary" onclick="showToast('Profile update हुई!','success')">✅ Save Changes</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ADMIN PANEL
+═══════════════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div id="adminLoginSection" class="admin-login">
+    <div class="admin-login-card">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="font-size:2.5rem;margin-bottom:0.5rem">🔐</div>
+        <h2 style="font-size:1.5rem">Admin Panel</h2>
+        <p style="color:var(--text-secondary);font-size:0.85rem">Admin credentials enter करें</p>
+      </div>
+      <div class="form-group"><label class="form-label">Admin Username</label><input type="text" class="form-input" placeholder="admin" id="adminUser"></div>
+      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" placeholder="••••••••" id="adminPass"></div>
+      <button class="btn btn-primary btn-full" onclick="adminLogin()">🔐 Admin Login</button>
+      <p style="text-align:center;margin-top:0.75rem;font-size:0.75rem;color:var(--text-muted)">Demo: admin / admin123</p>
+    </div>
+  </div>
+
+  <div id="adminDashSection" style="display:none;padding:80px 1.5rem 2rem;max-width:1180px;margin:0 auto">
+    <div class="flex-between" style="margin-bottom:1.5rem">
+      <h2 style="font-family:var(--font-display);font-size:1.5rem">⚙️ Admin Dashboard</h2>
+      <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Logout</button>
+    </div>
+
+    <!-- Admin Metrics -->
+    <div class="metrics-row stagger">
+      <div class="metric-card"><div class="metric-icon">👥</div><div class="metric-value">524</div><div class="metric-label">TOTAL USERS</div></div>
+      <div class="metric-card"><div class="metric-icon">💳</div><div class="metric-value">₹48,200</div><div class="metric-label">TOTAL REVENUE</div></div>
+      <div class="metric-card"><div class="metric-icon">📊</div><div class="metric-value">32</div><div class="metric-label">ACTIVE REPORTS</div></div>
+      <div class="metric-card"><div class="metric-icon">🔗</div><div class="metric-value">87</div><div class="metric-label">REFERRALS</div></div>
+    </div>
+
+    <!-- Admin Tabs -->
+    <div class="tabs" style="margin-top:1.5rem">
+      <button class="tab-btn active" onclick="switchTab(this,'adminReports')">📊 Reports</button>
+      <button class="tab-btn" onclick="switchTab(this,'adminUsers')">👥 Users</button>
+      <button class="tab-btn" onclick="switchTab(this,'adminPayments')">💳 Payments</button>
+      <button class="tab-btn" onclick="switchTab(this,'adminRefs')">🔗 Referrals</button>
+    </div>
+
+    <!-- Reports Tab -->
+    <div class="tab-content active" id="adminReports">
+      <div class="flex-between" style="margin:1.25rem 0">
+        <h3 style="font-family:var(--font-display)">Manage Reports</h3>
+        <button class="btn btn-primary btn-sm" onclick="openAddReportModal()">➕ Add Report</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>ID</th><th>Title</th><th>Language</th><th>Price</th><th>Sales</th><th>Actions</th></tr></thead>
+          <tbody id="adminReportsList">
+            <tr><td>R001</td><td>RELIANCE Industries Analysis</td><td><span class="badge badge-info">Hindi</span></td><td>₹99</td><td>87</td><td><button class="btn btn-sm btn-outline">Edit</button> <button class="btn btn-sm btn-danger">Del</button></td></tr>
+            <tr><td>R002</td><td>TCS Comprehensive Report</td><td><span class="badge badge-warning">English</span></td><td>₹149</td><td>64</td><td><button class="btn btn-sm btn-outline">Edit</button> <button class="btn btn-sm btn-danger">Del</button></td></tr>
+            <tr><td>R003</td><td>HDFC Bank Deep Dive</td><td><span class="badge badge-info">Hindi</span></td><td>₹99</td><td>53</td><td><button class="btn btn-sm btn-outline">Edit</button> <button class="btn btn-sm btn-danger">Del</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-content" id="adminUsers">
+      <div class="table-wrap" style="margin-top:1.25rem">
+        <div class="table-header"><span class="table-title">All Users</span><input type="text" class="form-input" style="width:200px;padding:0.35rem 0.75rem" placeholder="Search user..."></div>
+        <table class="data-table">
+          <thead><tr><th>User ID</th><th>Name</th><th>Mobile</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td>NA-001</td><td>Rajesh Kumar</td><td>+91 98765 XXXXX</td><td>2024-01-15</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+            <tr><td>NA-002</td><td>Priya Sharma</td><td>+91 87654 XXXXX</td><td>2024-01-12</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+            <tr><td>NA-003</td><td>Amit Singh</td><td>+91 76543 XXXXX</td><td>2024-01-08</td><td><span class="badge badge-warning">Pending</span></td><td><button class="btn btn-sm btn-outline">View</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Payments Tab -->
+    <div class="tab-content" id="adminPayments">
+      <div class="table-wrap" style="margin-top:1.25rem">
+        <div class="table-header"><span class="table-title">Payment Transactions</span></div>
+        <table class="data-table">
+          <thead><tr><th>Payment ID</th><th>User</th><th>Report</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>PAY-001</td><td>Rajesh Kumar</td><td>RELIANCE Analysis</td><td>₹99</td><td>2024-01-15</td><td><span class="badge badge-success">✓ Success</span></td></tr>
+            <tr><td>PAY-002</td><td>Priya Sharma</td><td>TCS Report</td><td>₹149</td><td>2024-01-12</td><td><span class="badge badge-success">✓ Success</span></td></tr>
+            <tr><td>PAY-003</td><td>Amit Singh</td><td>HDFC Analysis</td><td>₹99</td><td>2024-01-10</td><td><span class="badge badge-danger">✗ Failed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Referrals Tab -->
+    <div class="tab-content" id="adminRefs">
+      <div class="table-wrap" style="margin-top:1.25rem">
+        <div class="table-header"><span class="table-title">Referral Tracking</span></div>
+        <table class="data-table">
+          <thead><tr><th>Referrer</th><th>Referred User</th><th>Date</th><th>Commission</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>NA-001 (Rajesh)</td><td>NA-004 (Suresh)</td><td>2024-01-14</td><td>₹50</td><td><span class="badge badge-success">Paid</span></td></tr>
+            <tr><td>NA-001 (Rajesh)</td><td>NA-005 (Meena)</td><td>2024-01-12</td><td>₹50</td><td><span class="badge badge-success">Paid</span></td></tr>
+            <tr><td>NA-002 (Priya)</td><td>NA-006 (Ravi)</td><td>2024-01-10</td><td>₹50</td><td><span class="badge badge-warning">Pending</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT PAGE
+═══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div style="height:80px"></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">// GET IN TOUCH</div>
+        <h2>Contact <span class="gradient-text">करें</span></h2>
+        <p>किसी भी query के लिए हमसे संपर्क करें</p>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📱</div>
+              <div><div class="contact-label">WHATSAPP / CALL</div><div class="contact-value">+91 XXXXX XXXXX</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div><div class="contact-label">EMAIL</div><div class="contact-value">nitesh@niteshautomations.com</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✈</div>
+              <div><div class="contact-label">TELEGRAM</div><div class="contact-value">@NiteshAutomationsBot</div></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">⏰</div>
+              <div><div class="contact-label">WORKING HOURS</div><div class="contact-value">Mon-Sat: 9 AM – 7 PM</div></div>
+            </div>
+          </div>
+          <div class="social-links" style="margin-top:1.5rem">
+            <a class="social-btn" href="https://youtube.com/@NiteshAutomations" target="_blank" title="YouTube">▶</a>
+            <a class="social-btn" href="https://instagram.com/NiteshAutomations" target="_blank" title="Instagram">📸</a>
+            <a class="social-btn" href="https://facebook.com/NiteshAutomations" target="_blank" title="Facebook">📘</a>
+            <a class="social-btn" href="https://t.me/NiteshAutomations" target="_blank" title="Telegram">✈</a>
+            <a class="social-btn" href="https://linkedin.com/in/NiteshAutomations" target="_blank" title="LinkedIn">💼</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-family:var(--font-display);margin-bottom:1.25rem">📩 Message भेजें</h3>
+          <div class="form-group"><label class="form-label">Your Name *</label><input type="text" class="form-input" placeholder="आपका नाम" id="ctName"></div>
+          <div class="form-group"><label class="form-label">Mobile / Email *</label><input type="text" class="form-input" placeholder="Mobile या Email" id="ctContact"></div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-select" id="ctSubject">
+              <option>Research Report Query</option>
+              <option>Excel Automation</option>
+              <option>Tally Automation</option>
+              <option>Demat Account Help</option>
+              <option>Payment Issue</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">Message *</label><textarea class="form-textarea" placeholder="अपना message यहाँ लिखें..." id="ctMsg"></textarea></div>
+          <button class="btn btn-primary btn-full" onclick="submitContact()">📩 Send Message</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER (shown on all pages)
+═══════════════════════════════════════════ -->
+<footer class="footer" id="siteFooter">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" onclick="navigate('home')">
+          <div class="logo-icon">📈</div> Nitesh Automations
+        </a>
+        <p>Stock Market Research, Excel Automation, और Tally Solutions। Hindi में expert guidance के साथ अपना financial future बनाएं।</p>
+        <div class="social-links">
+          <a class="social-btn" href="https://youtube.com/@NiteshAutomations" target="_blank" title="YouTube">▶</a>
+          <a class="social-btn" href="https://instagram.com/NiteshAutomations" target="_blank" title="Instagram">📸</a>
+          <a class="social-btn" href="https://facebook.com/NiteshAutomations" target="_blank" title="Facebook">📘</a>
+          <a class="social-btn" href="https://t.me/NiteshAutomations" target="_blank" title="Telegram">✈</a>
+          <a class="social-btn" href="https://linkedin.com/in/NiteshAutomations" target="_blank" title="LinkedIn">💼</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigate('home')">Home</a></li>
+          <li><a href="#" onclick="navigate('about')">About Us</a></li>
+          <li><a href="#" onclick="navigate('services')">Services</a></li>
+          <li><a href="#" onclick="navigate('reports')">Research Reports</a></li>
+          <li><a href="#" onclick="navigate('contact')">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="navigate('dashboard')">My Dashboard</a></li>
+          <li><a href="https://t.me/NiteshAutomationsBot" target="_blank">Telegram Bot</a></li>
+          <li><a href="https://angel-one.onelink.me/Wjgr/referral" target="_blank">Open Demat</a></li>
+          <li><a href="#" onclick="navigate('admin')">Admin Panel</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Connect</div>
+        <ul class="footer-links">
+          <li><a href="https://youtube.com/@NiteshAutomations" target="_blank">▶ YouTube</a></li>
+          <li><a href="https://instagram.com/NiteshAutomations" target="_blank">📸 Instagram</a></li>
+          <li><a href="https://facebook.com/NiteshAutomations" target="_blank">📘 Facebook</a></li>
+          <li><a href="https://t.me/NiteshAutomations" target="_blank">✈ Telegram</a></li>
+          <li><a href="https://linkedin.com/in/NiteshAutomations" target="_blank">💼 LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">
+      ⚠️ <strong>DISCLAIMER:</strong> This content is for educational purposes only. We are not SEBI-registered investment advisors. Stock market investments are subject to market risks. Please read all related documents carefully before investing. Past performance is not indicative of future results. Nitesh Automations is not responsible for any investment decisions made based on our content.
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Nitesh Automations. All rights reserved. Made with ❤️ in India 🇮🇳</p>
+      <p style="font-family:var(--font-mono);font-size:0.72rem">GST: XXXXXXXXXXX | Privacy Policy | Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════ -->
+
+<!-- Payment Modal -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">💳 Payment</span>
+      <button class="modal-close" onclick="closeModal('paymentModal')">✕</button>
+    </div>
+    <div id="paymentReportInfo" style="background:var(--bg-card2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1rem">
+      <div style="font-weight:600" id="payReportTitle">RELIANCE Analysis (Hindi)</div>
+      <div style="display:flex;justify-content:space-between;margin-top:0.25rem">
+        <span style="color:var(--text-muted);font-size:0.82rem">Amount</span>
+        <span style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--brand-primary)" id="payAmount">₹99</span>
+      </div>
+    </div>
+    <div class="payment-options">
+      <div class="payment-option selected" onclick="selectPayment(this,'razorpay')">
+        <div class="payment-option-icon">💳</div>
+        <div><div class="payment-option-name">Razorpay</div><div class="payment-option-desc">Credit/Debit Card, Net Banking, Wallet</div></div>
+      </div>
+      <div class="payment-option" onclick="selectPayment(this,'upi')">
+        <div class="payment-option-icon">📱</div>
+        <div><div class="payment-option-name">UPI</div><div class="payment-option-desc">GPay, PhonePe, Paytm, BHIM</div></div>
+      </div>
+    </div>
+    <div class="upi-input-section" id="upiSection" style="display:none">
+      <div class="form-group">
+        <label class="form-label">UPI ID</label>
+        <input type="text" class="form-input" placeholder="yourname@upi">
+      </div>
+      <div style="text-align:center;margin:0.75rem 0">
+        <div style="font-size:0.82rem;color:var(--text-muted)">या QR Scan करें:</div>
+        <div style="margin:0.75rem auto;width:120px;height:120px;background:var(--bg-card2);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:0.72rem;color:var(--text-muted)">
+          📱 QR Code
+        </div>
+        <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--brand-primary)">nitesh@upi</div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="processPayment()">💳 Pay Now</button>
+    <p style="text-align:center;font-size:0.72rem;color:var(--text-muted);margin-top:0.75rem">🔒 100% Secure Payment | Instant Download after payment</p>
+  </div>
+</div>
+
+<!-- Demat Modal -->
+<div class="modal-overlay" id="dematModal">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">🏦 Free Demat Account</span>
+      <button class="modal-close" onclick="closeModal('dematModal')">✕</button>
+    </div>
+    <div style="text-align:center;padding:1rem 0">
+      <div style="font-size:3rem;margin-bottom:0.75rem">🚀</div>
+      <h3>Angel One में Free Account खोलें</h3>
+      <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;margin:0.75rem 0 1.25rem">
+        भारत का #1 discount broker। Zero brokerage on delivery trades। 5 minutes में account activate।
+      </p>
+      <div class="angel-features" style="justify-content:center;margin-bottom:1.5rem">
+        <span class="angel-feature">✅ Free Account</span>
+        <span class="angel-feature">⚡ Instant KYC</span>
+        <span class="angel-feature">📊 Research Tools</span>
+        <span class="angel-feature">🎁 Free Reports</span>
+      </div>
+      <a href="https://angel-one.onelink.me/Wjgr/referral" target="_blank" class="btn btn-accent btn-full btn-lg" onclick="closeModal('dematModal')">
+        🔗 Angel One में Account खोलें
+      </a>
+      <p style="font-size:0.72rem;color:var(--text-muted);margin-top:0.75rem">Referral link — Commission से हमें support करें ❤️</p>
+    </div>
+  </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="previewModal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <span class="modal-title" id="previewTitle">Report Preview</span>
+      <button class="modal-close" onclick="closeModal('previewModal')">✕</button>
+    </div>
+    <div id="previewContent" style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8">
+      <!-- Filled by JS -->
+    </div>
+    <div style="margin-top:1.25rem;padding:1rem;background:rgba(255,71,87,0.08);border:1px solid rgba(255,71,87,0.2);border-radius:var(--radius);font-size:0.72rem;color:#ff8a95;font-family:var(--font-mono)">
+      🔒 Full report को access करने के लिए payment करें। यह एक preview है।
+    </div>
+    <button class="btn btn-primary btn-full" style="margin-top:1rem" onclick="closeModal('previewModal');openPaymentModal(currentReport)">💳 Buy Full Report</button>
+  </div>
+</div>
+
+<!-- Add Report Modal -->
+<div class="modal-overlay" id="addReportModal">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-header">
+      <span class="modal-title">➕ New Report Add करें</span>
+      <button class="modal-close" onclick="closeModal('addReportModal')">✕</button>
+    </div>
+    <div class="form-group"><label class="form-label">Report Title *</label><input type="text" class="form-input" placeholder="eg: RELIANCE Industries Analysis 2024"></div>
+    <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" placeholder="Report के बारे में brief description..."></textarea></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      <div class="form-group"><label class="form-label">Language</label><select class="form-select"><option>Hindi</option><option>English</option><option>Both</option></select></div>
+      <div class="form-group"><label class="form-label">Price (₹)</label><input type="number" class="form-input" placeholder="99"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Sector</label><select class="form-select"><option>Banking</option><option>IT</option><option>Energy</option><option>Pharma</option><option>FMCG</option><option>Auto</option><option>Other</option></select></div>
+    <div class="form-group"><label class="form-label">PDF File URL (Google Drive link)</label><input type="text" class="form-input" placeholder="https://drive.google.com/..."></div>
+    <button class="btn btn-primary btn-full" onclick="saveReport()">💾 Report Save करें</button>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+const REPORTS = [
+  { id:'R001', title:'RELIANCE Industries Analysis', desc:'Fundamental analysis of Reliance Industries। Revenue, profit, valuation सब Hindi में explain किया गया है।', price:99, originalPrice:199, lang:'hindi', sector:'energy', icon:'⚡', popular:true },
+  { id:'R002', title:'TCS Comprehensive Report', desc:'TCS का complete technical और fundamental analysis। IT sector trends और future outlook।', price:149, originalPrice:299, lang:'english', sector:'it', icon:'💻', popular:false },
+  { id:'R003', title:'HDFC Bank Deep Dive', desc:'HDFC Bank का detailed analysis। NPA ratio, loan growth, valuation metrics सभी covered।', price:99, originalPrice:199, lang:'hindi', sector:'banking', icon:'🏦', popular:true },
+  { id:'R004', title:'Infosys Growth Analysis', desc:'Infosys का quarter-by-quarter analysis। Global IT demand trends और company positioning।', price:129, originalPrice:249, lang:'english', sector:'it', icon:'🔷', popular:false },
+  { id:'R005', title:'ICICI Bank Research', desc:'ICICI Bank comprehensive report। Retail banking growth, insurance business analysis।', price:99, originalPrice:199, lang:'hindi', sector:'banking', icon:'💳', popular:false },
+  { id:'R006', title:'Sun Pharma Analysis', desc:'Indian pharma sector leader का detailed study। Export markets और R&D pipeline analysis।', price:119, originalPrice:229, lang:'hindi', sector:'pharma', icon:'💊', popular:false },
+  { id:'R007', title:'Bajaj Finance Report', desc:'NBFC sector का best pick। Bajaj Finance का loan book, AUM growth comprehensive analysis।', price:149, originalPrice:299, lang:'english', sector:'banking', icon:'💰', popular:true },
+  { id:'R008', title:'Asian Paints Study', desc:'Paints sector leader। Margin analysis, rural demand recovery और premium segment growth।', price:99, originalPrice:199, lang:'hindi', sector:'fmcg', icon:'🎨', popular:false },
+  { id:'R009', title:'ONGC Energy Analysis', desc:'Government oil company analysis। Oil prices impact, refining margins और dividend track record।', price:79, originalPrice:149, lang:'hindi', sector:'energy', icon:'🛢️', popular:false },
+];
+
+let currentFilter = 'all';
+let currentReport = null;
+let isLoggedIn = false;
+let isAdmin = false;
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+function navigate(page) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  const el = document.getElementById(`page-${page}`);
+  if(el) el.classList.add('active');
+  
+  // Update nav active
+  document.querySelectorAll('[id^=nav-]').forEach(n => n.classList.remove('active'));
+  const navEl = document.getElementById(`nav-${page}`);
+  if(navEl) navEl.classList.add('active');
+  
+  // Scroll to top
+  window.scrollTo({top:0,behavior:'smooth'});
+  
+  // Page-specific actions
+  if(page === 'reports') renderReports(currentFilter);
+  if(page === 'dashboard' && !isLoggedIn) { navigate('login'); return; }
+  if(page === 'dashboard') renderPurchased();
+  
+  // Footer visibility
+  const footer = document.getElementById('siteFooter');
+  footer.style.display = ['dashboard','admin'].includes(page) ? 'none' : 'block';
+  
+  // Counter animation for home
+  if(page === 'home') animateCounters();
+}
+
+// ═══════════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════════
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.querySelector('.theme-toggle').textContent = isDark ? '🌙' : '☀️';
+}
+
+// ═══════════════════════════════════════════
+// MOBILE MENU
+// ═══════════════════════════════════════════
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════
+// COUNTER ANIMATION
+// ═══════════════════════════════════════════
+function animateCounters() {
+  document.querySelectorAll('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const increment = target / 40;
+    const timer = setInterval(() => {
+      current += increment;
+      if(current >= target) { current = target; clearInterval(timer); }
+      el.textContent = Math.round(current) + (el.nextElementSibling?.textContent === 'SATISFACTION' ? '' : '+');
+    }, 40);
+  });
+}
+
+// ═══════════════════════════════════════════
+// REPORTS
+// ═══════════════════════════════════════════
+function renderReports(filter='all') {
+  const grid = document.getElementById('reportsGrid');
+  if(!grid) return;
+  const search = document.getElementById('reportSearch')?.value?.toLowerCase() || '';
+  
+  let filtered = REPORTS.filter(r => {
+    const matchFilter = filter === 'all' || r.lang === filter || r.sector === filter;
+    const matchSearch = !search || r.title.toLowerCase().includes(search) || r.desc.toLowerCase().includes(search);
+    return matchFilter && matchSearch;
+  });
+  
+  grid.innerHTML = filtered.map(r => `
+    <div class="report-card fade-in" data-lang="${r.lang}" data-sector="${r.sector}">
+      <div class="report-thumb">
+        <div class="report-icon">${r.icon}</div>
+        <div class="report-lang-badge">${r.lang === 'hindi' ? 'हिंदी' : 'ENG'}</div>
+        ${r.popular ? '<div style="position:absolute;top:1rem;left:1rem;background:var(--brand-accent);color:#000;font-size:0.65rem;font-family:var(--font-mono);font-weight:700;padding:0.2rem 0.5rem;border-radius:4px">🔥 POPULAR</div>' : ''}
+      </div>
+      <div class="report-body">
+        <div class="report-title">${r.title}</div>
+        <div class="report-desc">${r.desc}</div>
+        <div class="report-footer">
+          <div>
+            <span class="report-price">₹${r.price}</span>
+            <span class="report-price-original">₹${r.originalPrice}</span>
+          </div>
+          <div class="report-actions">
+            <button class="btn btn-ghost btn-sm" onclick="openPreview('${r.id}')">👁 Preview</button>
+            <button class="btn btn-primary btn-sm" onclick="openPaymentModal('${r.id}')">💳 Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  
+  if(filtered.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">🔍 कोई report नहीं मिली</div>';
+  }
+}
+
+function setFilter(btn, filter) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = filter;
+  renderReports(filter);
+}
+
+function filterReports(val) { renderReports(currentFilter); }
+
+// ═══════════════════════════════════════════
+// MODALS
+// ═══════════════════════════════════════════
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function openPaymentModal(reportId) {
+  const r = REPORTS.find(x => x.id === reportId);
+  if(!r) return;
+  currentReport = reportId;
+  document.getElementById('payReportTitle').textContent = r.title;
+  document.getElementById('payAmount').textContent = `₹${r.price}`;
+  openModal('paymentModal');
+}
+
+function openDematModal() { openModal('dematModal'); }
+
+function openPreview(reportId) {
+  const r = REPORTS.find(x => x.id === reportId);
+  if(!r) return;
+  currentReport = reportId;
+  document.getElementById('previewTitle').textContent = `📊 ${r.title} — Preview`;
+  document.getElementById('previewContent').innerHTML = `
+    <div style="margin-bottom:1rem"><strong>📌 Report Overview</strong></div>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem">
+      <li>✅ Company का संक्षिप्त परिचय और business model</li>
+      <li>✅ Revenue और Profit trend (last 5 years)</li>
+      <li>🔒 <em style="color:var(--text-muted)">Detailed Financial Analysis — Paid Content</em></li>
+      <li>🔒 <em style="color:var(--text-muted)">Valuation Metrics (P/E, P/B, ROE) — Paid Content</em></li>
+      <li>🔒 <em style="color:var(--text-muted)">Target Price Analysis — Paid Content</em></li>
+      <li>🔒 <em style="color:var(--text-muted)">Risk Factors — Paid Content</em></li>
+      <li>🔒 <em style="color:var(--text-muted)">Investment Recommendation — Paid Content</em></li>
+    </ul>
+    <div style="margin-top:1rem;padding:0.75rem;background:var(--bg-card2);border-radius:var(--radius);font-size:0.8rem">
+      <strong>Sample from report:</strong><br><br>
+      "${r.title} की company fundamentally मजबूत है। Revenue growth consistent रही है और management quality excellent है। Full analysis के लिए complete report download करें..."
+    </div>
+  `;
+  openModal('previewModal');
+}
+
+function selectPayment(el, method) {
+  document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('upiSection').style.display = method === 'upi' ? 'block' : 'none';
+}
+
+function processPayment() {
+  // Razorpay Integration Placeholder
+  const options = {
+    key: "YOUR_RAZORPAY_KEY", // Replace with actual key
+    amount: 9900, // in paise
+    currency: "INR",
+    name: "Nitesh Automations",
+    description: "Stock Research Report",
+    image: "",
+    handler: function(response) {
+      closeModal('paymentModal');
+      showToast('✅ Payment successful! Report download हो रही है...','success');
+      setTimeout(() => showToast('📥 Report आपके Dashboard में available है।','info'), 2000);
+      isLoggedIn = true; // Mark as logged in after purchase
+    },
+    prefill: { name: "", email: "", contact: "" },
+    theme: { color: "#00D4AA" }
+  };
+  
+  // If Razorpay is loaded, open it
+  if(typeof Razorpay !== 'undefined') {
+    const rzp = new Razorpay(options);
+    rzp.open();
+  } else {
+    // Demo mode
+    closeModal('paymentModal');
+    showToast('✅ Payment successful! (Demo Mode)','success');
+    setTimeout(() => showToast('📥 Report dashboard में available है।','info'), 2000);
+    isLoggedIn = true;
+  }
+}
+
+// ═══════════════════════════════════════════
+// AUTH
+// ═══════════════════════════════════════════
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const pass = document.getElementById('loginPass').value;
+  if(!email || !pass) { showToast('सभी fields भरें','error'); return; }
+  // Demo login
+  isLoggedIn = true;
+  showToast('✅ Login successful! Welcome back!','success');
+  setTimeout(() => navigate('dashboard'), 1000);
+}
+
+function handleRegister() {
+  const name = document.getElementById('regName').value;
+  const mobile = document.getElementById('regMobile').value;
+  if(!name || !mobile) { showToast('Name और Mobile required है','error'); return; }
+  isLoggedIn = true;
+  showToast('✅ Registration successful! Welcome!','success');
+  setTimeout(() => navigate('dashboard'), 1000);
+}
+
+function handleRegisterFull() {
+  const name = document.getElementById('r2Name').value;
+  const mobile = document.getElementById('r2Mobile').value;
+  if(!name || !mobile) { showToast('सभी required fields भरें','error'); return; }
+  isLoggedIn = true;
+  showToast('🎉 Account बन गया! Welcome to Nitesh Automations!','success');
+  setTimeout(() => navigate('dashboard'), 1000);
+}
+
+function handleLogout() {
+  isLoggedIn = false;
+  showToast('Logout हो गए। फिर मिलेंगे! 👋','info');
+  setTimeout(() => navigate('home'), 800);
+}
+
+// ═══════════════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════════════
+function adminLogin() {
+  const u = document.getElementById('adminUser').value;
+  const p = document.getElementById('adminPass').value;
+  if(u === 'admin' && p === 'admin123') {
+    document.getElementById('adminLoginSection').style.display = 'none';
+    document.getElementById('adminDashSection').style.display = 'block';
+    isAdmin = true;
+    showToast('✅ Admin Login Successful!','success');
+  } else {
+    showToast('Wrong credentials!','error');
+  }
+}
+
+function adminLogout() {
+  document.getElementById('adminLoginSection').style.display = 'flex';
+  document.getElementById('adminDashSection').style.display = 'none';
+  isAdmin = false;
+  navigate('home');
+}
+
+function openAddReportModal() { openModal('addReportModal'); }
+function saveReport() {
+  closeModal('addReportModal');
+  showToast('✅ Report save हुई!','success');
+}
+
+// ═══════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════
+function showDashSection(link, section) {
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  link.classList.add('active');
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`dash-${section}`)?.classList.add('active');
+}
+
+function renderPurchased() {
+  const container = document.getElementById('purchasedReports');
+  if(!container) return;
+  const purchased = REPORTS.slice(0,3);
+  container.innerHTML = purchased.map(r => `
+    <div class="report-card">
+      <div class="report-thumb"><div class="report-icon">${r.icon}</div></div>
+      <div class="report-body">
+        <div class="report-title">${r.title}</div>
+        <div class="report-desc">${r.desc.substring(0,80)}...</div>
+        <button class="btn btn-primary btn-full" style="margin-top:0.75rem" onclick="showToast('📥 Download शुरू...','info')">📥 Download PDF</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════
+// CONTACT
+// ═══════════════════════════════════════════
+function submitContact() {
+  const name = document.getElementById('ctName').value;
+  const contact = document.getElementById('ctContact').value;
+  const msg = document.getElementById('ctMsg').value;
+  if(!name || !contact || !msg) { showToast('सभी required fields भरें','error'); return; }
+  
+  // Google Apps Script endpoint (replace with actual deployed URL)
+  const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+  
+  showToast('📩 Message भेजी जा रही है...','info');
+  
+  // Demo mode
+  setTimeout(() => {
+    document.getElementById('ctName').value = '';
+    document.getElementById('ctContact').value = '';
+    document.getElementById('ctMsg').value = '';
+    showToast('✅ Message मिल गई! 24 घंटे में reply करेंगे।','success');
+  }, 1500);
+}
+
+// ═══════════════════════════════════════════
+// REFERRAL
+// ═══════════════════════════════════════════
+function copyRef() {
+  const link = document.getElementById('refLink').textContent;
+  navigator.clipboard.writeText(link).then(() => showToast('✅ Referral link copy हो गई!','success'));
+}
+
+// ═══════════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════════
+function switchTab(btn, contentId) {
+  const parent = btn.closest('.tabs') || btn.parentElement;
+  parent.querySelectorAll?.('.tab-btn')?.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Find sibling tab contents
+  const container = btn.closest('.admin-login-card, #adminDashSection') || btn.parentElement.parentElement;
+  container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById(contentId)?.classList.add('active');
+}
+
+// ═══════════════════════════════════════════
+// TOAST NOTIFICATIONS
+// ═══════════════════════════════════════════
+function showToast(msg, type='info') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = {success:'✅',error:'❌',info:'ℹ️'};
+  toast.innerHTML = `<span>${icons[type]||'ℹ️'}</span><span class="toast-msg">${msg}</span>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transform='translateX(20px)'; setTimeout(()=>toast.remove(),300); }, 3500);
+}
+
+// ═══════════════════════════════════════════
+// STOCK PRICE SIMULATION
+// ═══════════════════════════════════════════
+function simulateStockUpdates() {
+  const stocks = document.querySelectorAll('.stock-item');
+  stocks.forEach(s => {
+    const val = s.querySelector('.stock-val');
+    const chg = s.querySelector('.stock-chg');
+    if(!val) return;
+    const price = parseFloat(val.textContent.replace('₹','').replace(',',''));
+    const change = (Math.random() - 0.5) * 10;
+    const newPrice = (price + change).toFixed(2);
+    const pct = ((change/price)*100).toFixed(2);
+    val.textContent = `₹${parseFloat(newPrice).toLocaleString('en-IN')}`;
+    const isUp = change > 0;
+    chg.textContent = `${isUp?'▲':'▼'} ${isUp?'+':''}${pct}%`;
+    chg.className = `stock-chg ${isUp?'up':'down'}`;
+  });
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+window.addEventListener('load', () => {
+  navigate('home');
+  
+  // Simulate live stock updates
+  setInterval(simulateStockUpdates, 3000);
+  
+  // Close modals on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if(e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+  
+  // Scroll effect on navbar
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    navbar.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.3)' : 'none';
+  });
+  
+  // Check URL params for referral
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('ref')) {
+    document.getElementById('regRef')?.setAttribute('value', params.get('ref'));
+    document.getElementById('r2Ref')?.setAttribute('value', params.get('ref'));
+  }
+  
+  // Initial counter animation
+  setTimeout(animateCounters, 500);
+});
+</script>
+
+<!-- Razorpay Script (add your key) -->
+<!-- <script src="https://checkout.razorpay.com/v1/checkout.js"></script> -->
+
+</body>
+</html>
